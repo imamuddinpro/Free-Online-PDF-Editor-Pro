@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://imamuddinpro.blogspot.com/p/free-online-pdf-editor-edit-split-join.html">
-    <img src="assets/PDF-Editor-Free-Online-imamuddinpro.png" alt="PDF Tools Pro by Imamuddin Pro — free online PDF editor" width="100%">
+    <img src="assets/PDF-Editor-Free-Online-imamuddinpro.png" alt="Free PDF Editing Tools Pro by Imamuddin Pro — Free online PDF editor" width="100%">
   </a>
 </p>
 
