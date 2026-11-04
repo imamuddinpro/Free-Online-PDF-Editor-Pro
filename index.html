@@ -1,0 +1,1334 @@
+<!doctype html>
+<html lang="en-US">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+  <meta content="Edit PDFs, add text and signatures, split selected pages, and merge multiple documents in your browser with this free online PDF toolkit." name="description"/>
+  <meta content="Imamuddin Pro" name="author"/>
+  <meta content="#f1f5f9" name="theme-color"/>
+  <meta content="light" name="color-scheme"/>
+  <meta content="strict-origin-when-cross-origin" name="referrer"/>
+  <meta content="website" property="og:type"/>
+  <meta content="PDF Tools Pro" property="og:site_name"/>
+  <meta content="Free Online PDF Editor, Splitter &amp; Merger | PDF Tools Pro" property="og:title"/>
+  <meta content="Edit PDFs, add text and signatures, split pages, and combine multiple PDF documents in your browser." property="og:description"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta content="Free Online PDF Editor, Splitter &amp; Merger | PDF Tools Pro" name="twitter:title"/>
+  <meta content="Edit PDFs, add text and signatures, split pages, and combine multiple PDF documents in your browser." name="twitter:description"/>
+  <title>
+   Free Online PDF Editor, Splitter &amp; Merger | PDF Tools Pro
+  </title>
+  <link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch"/>
+  <link href="styles.css" rel="stylesheet"/>
+  <script defer src="app.js">
+  </script>
+ </head>
+ <body>
+  <main id="main-content">
+   <div id="pdf-editor-root">
+    <div id="app">
+     <div aria-label="PDF tools" class="pe-header" role="group">
+      <div aria-label="PDF tool" class="pe-mode-switch" id="pdfModeSwitch" role="tablist">
+       <button aria-controls="pe-body" aria-selected="true" class="button pe-mode-btn active" id="modeEditBtn" role="tab" title="Open the PDF editing tool" type="button">
+        <svg class="line" viewBox="0 0 24 24">
+         <path d="M13.26 3.59997L5.04997 12.29C4.73997 12.62 4.43997 13.27 4.37997 13.72L4.00997 16.96C3.87997 18.13 4.71997 18.93 5.87997 18.73L9.09997 18.18C9.54997 18.1 10.18 17.77 10.49 17.43L18.7 8.73997C20.12 7.23997 20.76 5.52997 18.55 3.43997C16.35 1.36997 14.68 2.09997 13.26 3.59997Z" stroke-miterlimit="10">
+         </path>
+         <path d="M11.89 5.05005C12.32 7.81005 14.56 9.92005 17.34 10.2" stroke-miterlimit="10">
+         </path>
+         <path d="M3 22H21" stroke-miterlimit="10">
+         </path>
+        </svg>
+        <span>
+         EDIT PDF
+        </span>
+       </button>
+       <button aria-controls="pdfSplitWorkspace" aria-selected="false" class="button pe-mode-btn" id="modeSplitBtn" role="tab" title="Open the PDF splitting tool" type="button">
+        <svg class="line" viewBox="0 0 24 24">
+         <path d="M5.027 3h-2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2m10-14h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2M10 1v18" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+         </path>
+        </svg>
+        <span>
+         SPLIT PDF
+        </span>
+       </button>
+       <button aria-controls="pdfJoinWorkspace" aria-selected="false" class="button pe-mode-btn" id="modeJoinBtn" role="tab" title="Join multiple PDF files into one document" type="button">
+        <svg class="line" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+         <path d="M8 3h8l4 4v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z">
+         </path>
+         <path d="M3 8v11a2 2 0 0 0 2 2h9">
+         </path>
+         <path d="M10 12h4M12 10v4">
+         </path>
+        </svg>
+        <span>
+         JOIN PDF
+        </span>
+       </button>
+      </div>
+      <div class="pe-header-controls" id="headerControls" style="display: none;">
+       <div class="pe-control-group">
+        <button aria-label="Previous Page" class="pe-btn-icon" id="prevPageBtn" title="Previous Page" type="button">
+         <svg class="line" viewBox="0 0 24 24">
+          <path d="M20.24 7.22005V16.7901C20.24 18.7501 18.11 19.98 16.41 19L12.26 16.61L8.10996 14.21C6.40996 13.23 6.40996 10.78 8.10996 9.80004L12.26 7.40004L16.41 5.01006C18.11 4.03006 20.24 5.25005 20.24 7.22005Z">
+          </path>
+          <path d="M3.76001 18.1801V5.82007">
+          </path>
+         </svg>
+        </button>
+        <div class="pe-page-jump" title="Type a page number and press Enter">
+         <input aria-label="Go to page number" autocomplete="off" id="pageJumpInput" inputmode="numeric" spellcheck="false" type="text" value="1"/>
+         <span class="pe-page-total" id="pageTotal">
+          / 1
+         </span>
+        </div>
+        <button aria-label="Next Page" class="pe-btn-icon" id="nextPageBtn" title="Next Page" type="button">
+         <svg class="line" viewBox="0 0 24 24">
+          <path d="M3.76001 7.22005V16.7901C3.76001 18.7501 5.89 19.98 7.59 19L11.74 16.61L15.89 14.21C17.59 13.23 17.59 10.78 15.89 9.80004L11.74 7.40004L7.59 5.01006C5.89 4.03006 3.76001 5.25005 3.76001 7.22005Z">
+          </path>
+          <path d="M20.24 18.1801V5.82007">
+          </path>
+         </svg>
+        </button>
+       </div>
+       <div class="pe-header-divider">
+       </div>
+       <div aria-label="View controls" class="pe-control-group pe-view-controls">
+        <button aria-label="Zoom In" class="pe-btn-icon" id="zoomInBtn" title="Zoom In" type="button">
+         <svg class="line" viewBox="0 0 24 24">
+          <path d="M6 12H18">
+          </path>
+          <path d="M12 18V6">
+          </path>
+         </svg>
+        </button>
+        <button aria-label="Zoom Out" class="pe-btn-icon" id="zoomOutBtn" title="Zoom Out" type="button">
+         <svg class="line" viewBox="0 0 24 24">
+          <path d="M6 12H18">
+          </path>
+         </svg>
+        </button>
+        <span aria-hidden="true" class="pe-header-divider pe-view-divider">
+        </span>
+        <button aria-label="Rotate page left 90 degrees" class="pe-btn-icon" disabled="" id="rotateLeftBtn" title="Rotate Page Left 90&deg;" type="button">
+         <svg class="line" viewBox="0 0 24 24">
+          <path d="M4 10V4H10">
+          </path>
+          <path d="M4.6 9.4A8 8 0 1 1 4 14">
+          </path>
+         </svg>
+        </button>
+        <button aria-label="Rotate page right 90 degrees" class="pe-btn-icon" disabled="" id="rotateRightBtn" title="Rotate Page Right 90&deg;" type="button">
+         <svg class="line" viewBox="0 0 24 24">
+          <path d="M20 10V4H14">
+          </path>
+          <path d="M19.4 9.4A8 8 0 1 0 20 14">
+          </path>
+         </svg>
+        </button>
+       </div>
+      </div>
+      <span class="pe-filename-tag" id="filenameTag">
+      </span>
+      <button aria-label="Reset all PDF tools" class="pe-btn pe-reset-btn" id="resetBtn" style="display:none;" title="Reset &mdash; clear all PDF tool sessions" type="button">
+       <svg class="line" viewBox="0 0 24 24">
+        <path d="M22 12C22 17.52 17.52 22 12 22C6.48 22 3.11 16.44 3.11 16.44M3.11 16.44H7.63M3.11 16.44V21.44M2 12C2 6.48 6.44 2 12 2C18.67 2 22 7.56 22 7.56M22 7.56V2.56M22 7.56H17.56">
+        </path>
+       </svg>
+       <span>
+        Reset
+       </span>
+      </button>
+      <button class="button pe-btn pe-btn-primary" disabled="" id="downloadBtn" type="button">
+       <i class="icon dl">
+       </i>
+       Download
+      </button>
+     </div>
+     <section aria-labelledby="modeSplitBtn" id="pdfSplitWorkspace" role="tabpanel">
+      <div class="ps-app">
+       <div class="ps-dropzone" id="psDropzone">
+        <svg aria-hidden="true" class="pe-ico" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+         <path d="M4 4h9l7 7v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z">
+         </path>
+         <path d="M13 4v6h6">
+         </path>
+        </svg>
+        <div class="ps-drop-title">
+         Choose a PDF to split
+        </div>
+        <div class="ps-drop-copy">
+         Select or drop a PDF file, then choose the pages you want to save as separate PDF files.
+        </div>
+        <input accept="application/pdf,.pdf" class="ps-hidden" id="psFileInput" type="file">
+         <div class="ps-drop-inner">
+          <button class="pe-btn pe-btn-primary" id="psChooseBtn" type="button">
+           Choose PDF File
+          </button>
+         </div>
+         <div class="ps-format-note">
+          Only
+          <strong>
+           .pdf
+          </strong>
+          documents are accepted.
+         </div>
+        </input>
+       </div>
+       <div class="ps-workspace" id="psWorkspace">
+        <div class="ps-filebar">
+         <div class="ps-filemeta">
+          <div aria-hidden="true" class="ps-file-icon">
+           PDF
+          </div>
+          <div class="ps-filetext">
+           <div class="ps-file-name" id="psFileName">
+            No file
+           </div>
+           <div class="ps-file-info" id="psFileInfo">
+            No PDF loaded
+           </div>
+          </div>
+         </div>
+         <button class="pe-btn pe-btn-secondary ps-new-btn" id="psNewFile" type="button">
+          <svg class="line" viewBox="0 0 24 24">
+           <path d="M9 17V11L7 13">
+           </path>
+           <path d="M9 11L11 13">
+           </path>
+           <path d="M22 10V15C22 20 20 22 15 22H9C4 22 2 20 2 15V9C2 4 4 2 9 2H14">
+           </path>
+           <path d="M22 10H18C15 10 14 9 14 6V2L22 10Z">
+           </path>
+          </svg>
+          Open another PDF
+         </button>
+        </div>
+        <div class="ps-toolbar">
+         <div class="ps-toolbar-left">
+          <span class="ps-badge" id="psSelectedBadge">
+           0 selected
+          </span>
+          <span class="ps-count" id="psPageCountText">
+           0 pages
+          </span>
+          <button class="pe-btn pe-btn-secondary" id="psSelectAll" type="button">
+           Select all
+          </button>
+          <button class="pe-btn pe-btn-secondary" id="psClearAll" type="button">
+           Clear
+          </button>
+          <button class="pe-btn pe-btn-secondary" id="psInvert" type="button">
+           Invert
+          </button>
+         </div>
+         <div class="ps-actions">
+          <button class="pe-btn pe-btn-primary" disabled="" id="psSplitBtn" type="button">
+           <svg class="line" viewBox="0 0 24 24">
+            <path d="M17 13.4V16.4C17 20.4 15.4 22 11.4 22H7.6C3.6 22 2 20.4 2 16.4V12.6C2 8.6 3.6 7 7.6 7H10.6">
+            </path>
+            <path d="M17 13.4H13.8C11.4 13.4 10.6 12.6 10.6 10.2V7L17 13.4Z">
+            </path>
+            <path d="M11.6 2H15.6">
+            </path>
+            <path d="M7 5C7 3.34 8.34 2 10 2H12.62">
+            </path>
+            <path d="M21.9999 8V14.19C21.9999 15.74 20.7399 17 19.1899 17">
+            </path>
+            <path d="M22 8H19C16.75 8 16 7.25 16 5V2L22 8Z">
+            </path>
+           </svg>
+           Split &amp; Download ZIP
+          </button>
+          <button class="pe-btn pe-btn-primary ps-combine-btn" disabled="" id="psCombineBtn" type="button">
+           <svg class="line" viewBox="0 0 24 24">
+            <path d="M8 3h8l4 4v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z">
+            </path>
+            <path d="M3 8v11a2 2 0 0 0 2 2h9">
+            </path>
+            <path d="M10 11h6M13 8v6">
+            </path>
+           </svg>
+           Combine &amp; Download PDF
+          </button>
+         </div>
+         <div class="ps-toolbar-hint">
+          Click to select or skip &middot; Shift+click for a range
+         </div>
+         <div class="ps-summary" id="psSummary">
+          Select pages to split.
+         </div>
+        </div>
+        <div aria-live="polite" class="ps-notice" id="psNotice" role="status">
+        </div>
+        <div aria-label="PDF pages" class="ps-page-grid" id="psPageGrid">
+        </div>
+        <div class="ps-empty ps-hidden" id="psEmpty">
+         <strong>
+          No pages selected.
+         </strong>
+         <br/>
+         Select at least one page to create the split ZIP or combined PDF.
+        </div>
+        <div class="ps-progress-wrap" id="psProgressWrap">
+         <div class="ps-progress-line">
+          <strong id="psProgressText">
+           Preparing files...
+          </strong>
+          <span id="psProgressPercent">
+           0%
+          </span>
+         </div>
+         <div class="ps-progress-track">
+          <div class="ps-progress-bar" id="psProgressBar">
+          </div>
+         </div>
+        </div>
+        <div class="ps-bottom" id="psBottom">
+        </div>
+       </div>
+      </div>
+     </section>
+     <section aria-label="Join PDF files" aria-labelledby="modeJoinBtn" id="pdfJoinWorkspace" role="tabpanel">
+      <div class="ps-app pj-app">
+       <div class="ps-dropzone pj-dropzone" id="pjDropzone">
+        <svg aria-hidden="true" class="pe-ico" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+         <path d="M4 4h9l7 7v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z">
+         </path>
+         <path d="M13 4v6h6">
+         </path>
+         <path d="M8 15h8M12 11v8">
+         </path>
+        </svg>
+        <div class="ps-drop-title">
+         Join and Rearrange PDF Pages
+        </div>
+        <div class="ps-drop-copy">
+         Choose or drop two or more PDF files. Every page will appear as its own thumbnail, so you can arrange individual pages from different documents in any order.
+        </div>
+        <input accept="application/pdf,.pdf" class="ps-hidden" id="pjFileInput" multiple="" type="file"/>
+        <div class="ps-drop-inner">
+         <button class="pe-btn pe-btn-primary" id="pjChooseBtn" type="button">
+          Choose PDF Files
+         </button>
+        </div>
+        <div class="ps-format-note">
+         Select multiple
+         <strong>
+          .pdf
+         </strong>
+         documents. Files are processed in your browser.
+        </div>
+       </div>
+       <div class="ps-workspace pj-workspace" id="pjWorkspace">
+        <div class="ps-filebar pj-filebar">
+         <div class="ps-filemeta">
+          <div aria-hidden="true" class="ps-file-icon">
+           PDF
+          </div>
+          <div class="ps-filetext">
+           <div class="ps-file-name" id="pjFileName">
+            PDF pages ready to arrange
+           </div>
+           <div class="ps-file-info" id="pjFileInfo">
+            Add at least two PDF files
+           </div>
+          </div>
+         </div>
+         <div class="pj-filebar-actions">
+          <button class="pe-btn pe-btn-secondary ps-new-btn" id="pjAddFiles" type="button">
+           <svg aria-hidden="true" class="line" viewBox="0 0 24 24">
+            <path d="M12 5v14M5 12h14">
+            </path>
+           </svg>
+           Add More PDFs
+          </button>
+         </div>
+        </div>
+        <div class="ps-toolbar pj-toolbar">
+         <div class="ps-toolbar-left">
+          <span class="ps-badge" id="pjFileBadge">
+           0 PDFs
+          </span>
+          <span class="ps-count" id="pjPageCount">
+           0 pages
+          </span>
+          <span class="ps-toolbar-hint">
+           Drag any page using its four-arrow handle, or use the four square position controls.
+          </span>
+         </div>
+         <div class="ps-actions">
+          <button class="pe-btn pe-btn-primary pj-merge-btn" disabled="" id="pjMergeBtn" type="button">
+           <svg aria-hidden="true" class="line" viewBox="0 0 24 24">
+            <path d="M8 3h8l4 4v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z">
+            </path>
+            <path d="M3 8v11a2 2 0 0 0 2 2h9">
+            </path>
+            <path d="M10 12h4M12 10v4">
+            </path>
+           </svg>
+           Join &amp; Download PDF
+          </button>
+         </div>
+         <div class="ps-summary" id="pjSummary">
+          Add at least two PDF files. All pages will be shown as individual thumbnails.
+         </div>
+        </div>
+        <div aria-live="polite" class="ps-notice pj-notice" id="pjNotice" role="status">
+        </div>
+        <div aria-label="All PDF pages in final joining order" class="pj-file-grid" id="pjFileGrid" role="list">
+        </div>
+        <div class="ps-empty ps-hidden" id="pjEmpty">
+         <strong>
+          No PDF pages loaded.
+         </strong>
+         <br/>
+         Choose at least two PDF files. Each page will appear as a separate thumbnail.
+        </div>
+        <div class="ps-progress-wrap pj-progress-wrap" id="pjProgressWrap">
+         <div class="ps-progress-line">
+          <strong id="pjProgressText">
+           Preparing PDF pages...
+          </strong>
+          <span id="pjProgressPercent">
+           0%
+          </span>
+         </div>
+         <div class="ps-progress-track">
+          <div class="ps-progress-bar" id="pjProgressBar">
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
+     <div aria-labelledby="modeEditBtn" id="pe-body" role="tabpanel">
+      <aside class="collapsed" id="pe-sidebar-left">
+       <div class="pe-sidebar-header">
+        <span class="pe-sidebar-title">
+         Pages
+        </span>
+        <button aria-label="Toggle Pages Panel" class="pe-btn-icon" id="toggleSidebarBtn" title="Toggle Pages Panel" type="button">
+         <svg class="line" id="sidebarToggleIcon" viewBox="0 0 24 24">
+          <path d="M8.91003 19.9201L15.43 13.4001C16.2 12.6301 16.2 11.3701 15.43 10.6001L8.91003 4.08008" stroke-miterlimit="10">
+          </path>
+         </svg>
+        </button>
+       </div>
+       <div id="pe-thumbnails-list">
+       </div>
+      </aside>
+      <div aria-label="PDF document stage" id="pe-stage-wrap" role="region">
+       <div id="pe-stage">
+        <div id="pe-empty-state">
+         <svg class="pe-ico" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path d="M4 4h9l7 7v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z">
+          </path>
+          <path d="M13 4v6h6">
+          </path>
+         </svg>
+         <h2>
+          Upload or Drag a PDF Document
+         </h2>
+         <p>
+          Select or drop a PDF file to add text, signatures, images, and Whiteout areas, or rotate pages.
+         </p>
+         <div id="pe-dropzone">
+          <button class="pe-btn pe-btn-primary" id="openBtnEmpty" type="button">
+           Choose PDF File
+          </button>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div aria-label="Editing tools" id="pe-rail-right" role="group">
+       <button class="pe-tool" disabled="" id="toolImage" title="Upload Image / Signature" type="button">
+        <svg class="line" viewBox="0 0 24 24">
+         <path d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z">
+         </path>
+         <path d="M13 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V10">
+         </path>
+         <path d="M15.75 5H21.25">
+         </path>
+         <path d="M18.5 7.75V2.25">
+         </path>
+         <path d="M2.67004 18.9501L7.60004 15.6401C8.39004 15.1101 9.53004 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001">
+         </path>
+        </svg>
+        Image
+       </button>
+       <button class="pe-tool" disabled="" id="toolText" title="Add Text Box" type="button">
+        <svg class="line" viewBox="0 0 24 24">
+         <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z">
+         </path>
+         <path d="M7 8.8899C10.15 7.3199 13.85 7.3199 17 8.8899">
+         </path>
+         <path d="M12 16.2999V7.92993">
+         </path>
+        </svg>
+        Text
+       </button>
+       <div class="pe-rail-divider">
+       </div>
+       <button aria-pressed="false" class="pe-tool pe-tool-whiteout" disabled="" id="toolWhiteout" title="Whiteout: draw a solid rectangle over page content" type="button">
+        <svg class="line" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+         <path d="M4 16.5 14.8 5.7a2.4 2.4 0 0 1 3.4 0l.1.1a2.4 2.4 0 0 1 0 3.4L7.5 20H4z">
+         </path>
+         <path d="m12.5 8 3.5 3.5">
+         </path>
+         <path d="M3 22h18">
+         </path>
+        </svg>
+        Whiteout
+       </button>
+      </div>
+     </div>
+    </div>
+    <img alt="Preview Signature" id="ghost-preview"/>
+    <div id="ghost-text-preview">
+     Click to place text box
+    </div>
+    <input accept="application/pdf,.pdf" id="pdfInput" style="display:none;" type="file"/>
+    <input accept="image/png, image/jpeg, image/webp" id="imgInput" style="display:none;" type="file"/>
+    <div aria-live="polite" id="pe-toast" role="status">
+    </div>
+    <div aria-live="polite" id="pe-loading" role="status">
+     <div class="pe-spinner">
+     </div>
+     <span id="pe-loadingText">
+      Loading...
+     </span>
+    </div>
+   </div>
+   <section aria-labelledby="pe-v3-guide-title" class="pe-v3-guide">
+    <div class="pe-v3-guide-inner">
+     <h1 id="pe-v3-guide-title">
+      Free Online PDF Editor, Splitter and Merger
+     </h1>
+     <p>
+      PDF Tools Pro helps you make common PDF changes directly in your browser. Add text, images or signatures, cover page areas with coloured Whiteout rectangles, zoom in or out, rotate individual pages, split a PDF into separate files, or join multiple PDFs into one document.
+     </p>
+     <div class="pe-v3-guide-grid">
+      <article class="pe-v3-guide-card">
+       <h3>
+        Edit a PDF
+       </h3>
+       <p>
+        Choose a PDF file, navigate between pages, zoom in or out, rotate the active page, add text or images, and create movable, resizable Whiteout rectangles with selectable fill colours.
+       </p>
+      </article>
+      <article class="pe-v3-guide-card">
+       <h3>
+        Split a PDF
+       </h3>
+       <p>
+        Open Split PDF, select the pages you need, and use the selection controls to select all, clear, invert, or choose a page range. Export the selected pages in a ZIP archive, or combine them into a single PDF file.
+       </p>
+      </article>
+      <article class="pe-v3-guide-card">
+       <h3>
+        Join PDF Files
+       </h3>
+       <p>
+        Upload two or more PDF files to display every page as an individual thumbnail. Drag pages or use the first, up, down, and last controls to arrange any page sequence, then download one combined PDF file.
+       </p>
+      </article>
+     </div>
+     <blockquote class="note">
+      <b>
+       Privacy note
+      </b>
+      : Your selected PDF files are processed in your browser by this tool; the documents themselves are not uploaded to a PDF-processing server.
+     </blockquote>
+     <hr/>
+     <div class="tabs stick">
+      <input checked="" id="tabT-1" name="postTabs" type="radio"/>
+      <input id="tabT-2" name="postTabs" type="radio"/>
+      <input id="tabT-3" name="postTabs" type="radio"/>
+      <div>
+       <label data-text="Info" for="tabT-1">
+       </label>
+       <label data-text="How It Works?" for="tabT-2">
+       </label>
+       <label data-text="FAQs" for="tabT-3">
+       </label>
+      </div>
+      <div class="tabC-1">
+       <h2>
+        Free Online PDF Editor, Splitter and Merger &ndash; Edit, Split and Join PDF Files
+       </h2>
+       <p>
+        Need to make quick changes to a PDF document, separate a lengthy file into smaller sections, or combine multiple PDFs? Our
+        <b>
+         <a href="/p/free-online-pdf-editor-edit-split-join.html" target="_blank">
+          Online PDF Editor
+         </a>
+        </b>
+        provides a simple and convenient way to handle these everyday document tasks directly through your web browser. Add text, insert a signature image, split a PDF into separate files, or join multiple documents into one file from the same workspace.
+       </p>
+       <img alt="Online-PDF-Editor-Banner-ImamUddinPro" border="0" data-original-height="720" data-original-width="1280" decoding="async" height="720" loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhV_tiTcjN-SnbLKv8vo3pDPm-1cUOn-tXiJ4GNYmfmjzJHSqMYG2J82IKY8Yj-dotj3LU7MUsCuSGAgGZb8YsTLPYIINfmOHVkjKyvE9Jk-Ht_5oQ5IfdkOJbeU6hh0NKJqF2gm5YWzdck8LxqM798wv05aWx6-AfKf3uQ8I5ExpjVxM__k_M06Ek6yGM/s1600-rw/Online-PDF-Editor-Banner-ImamUddinPro.webp" width="1280"/>
+       <p>
+        Designed for students, teachers, office professionals, freelancers, business owners, and everyday users, this online PDF toolkit brings three useful document-management functions together:
+        <b>
+         Edit PDF
+        </b>
+        ,
+        <b>
+         Split PDF
+        </b>
+        , and
+        <b>
+         Join PDF
+        </b>
+        . Instead of searching for separate applications for different tasks, simply choose the function you need, upload your document or documents, and follow the available instructions.
+       </p>
+       <blockquote class="note">
+        Make PDF tasks simpler and more convenient. Add the information you need, insert your signature image, or separate a large document into smaller PDF files &ndash; all from one easy-to-access online toolkit.
+       </blockquote>
+       <h3>
+        What Can You Do With This Online PDF Tool?
+       </h3>
+       <p>
+        This PDF toolkit focuses on three essential functions that help you manage documents more conveniently.
+       </p>
+       <ul class="ul_list">
+        <li>
+         <b>
+          Edit PDF Online:
+         </b>
+         Add new text to an existing PDF document using the available text box feature.
+        </li>
+        <li>
+         <b>
+          Add Text to PDF:
+         </b>
+         Insert additional information, notes, labels, or other text wherever it is needed on a document.
+        </li>
+        <li>
+         <b>
+          Add Signature to PDF:
+         </b>
+         Insert a signature image into your document for a more complete and professional appearance.
+        </li>
+        <li>
+         <b>
+          Whiteout PDF Areas:
+         </b>
+         Cover selected page areas with solid-colour rectangles that can be moved, resized, recoloured, duplicated, and deleted before export.
+        </li>
+        <li>
+         <b>
+          Rotate PDF Pages:
+         </b>
+         Rotate the active page left or right in 90-degree increments and include the rotation in the exported PDF.
+        </li>
+        <li>
+         <b>
+          Split PDF Files:
+         </b>
+         Separate a lengthy PDF document into smaller files using the available splitting controls.
+        </li>
+        <li>
+         <b>
+          Join PDF Files:
+         </b>
+         Combine multiple PDF documents into one file and arrange the order before downloading.
+        </li>
+        <li>
+         <b>
+          Three PDF Tools:
+         </b>
+         Access editing, splitting, and joining independently from the same page.
+        </li>
+        <li>
+         <b>
+          Simple Working Environment:
+         </b>
+         Use a straightforward interface without navigating through complicated desktop software.
+        </li>
+       </ul>
+       <p>
+        Working with PDF documents is part of everyday life for many people. Students frequently handle assignments, study materials, and educational documents. Teachers and educators prepare learning resources, while freelancers and office professionals regularly work with reports, forms, and business paperwork.
+       </p>
+       <blockquote class="note">
+        A useful document tool should save you unnecessary effort, not create more work. Choose the PDF function that matches your task and focus on getting the result you need.
+       </blockquote>
+      </div>
+      <div class="tabC-2">
+       <h2>
+        How to Edit, Split or Join PDF Files Online?
+       </h2>
+       <p>
+        Getting started with this online PDF toolkit is simple. You do not need advanced technical knowledge to use the available tools. First, decide what you want to accomplish: edit a document, extract selected pages, or combine multiple PDF files. Then select Edit PDF, Split PDF or Join PDF and follow the instructions in the workspace.
+       </p>
+       <h2>
+        Method 1: How to Edit a PDF Document
+       </h2>
+       <p>
+        When you need to add additional information or insert a signature image into an existing document, use the PDF editing feature.
+       </p>
+       <ul class="ul_list">
+        <li>
+         <b>
+          Open the PDF Editor:
+         </b>
+         Select the
+         <b>
+          Edit PDF
+         </b>
+         option to access the editing workspace.
+        </li>
+        <li>
+         <b>
+          Upload Your PDF:
+         </b>
+         Choose the PDF document you want to edit from your computer or device.
+        </li>
+        <li>
+         <b>
+          Add Text:
+         </b>
+         Use the text box feature to insert new text into the appropriate area of the document.
+        </li>
+        <li>
+         <b>
+          Whiteout or Rotate:
+         </b>
+         Select Whiteout and drag a rectangle over the area you want to cover, or use the rotate buttons to turn the active page left or right.
+        </li>
+        <li>
+         <b>
+          Insert Your Signature:
+         </b>
+         Choose the signature-image option and upload the signature image you want to use.
+        </li>
+        <li>
+         <b>
+          Adjust and Review:
+         </b>
+         Check the position and appearance of the inserted text and signature image.
+        </li>
+        <li>
+         <b>
+          Save Your Edited PDF:
+         </b>
+         Use the available save or download option to obtain the updated document.
+        </li>
+       </ul>
+       <p>
+        This
+        <b>
+         Online PDF Editor
+        </b>
+        can help make those routine tasks more manageable. For example, you can add supplementary information to an assignment, insert a signature image into a document, or divide a large PDF report into smaller sections that are easier to organize and share.
+       </p>
+       <h2>
+        Method 2: How to Split a PDF Document
+       </h2>
+       <p>
+        Have a large PDF that would be easier to manage in smaller sections? The PDF Splitter helps you separate a document using the available page-selection and splitting controls.
+       </p>
+       <ul class="ul_list">
+        <li>
+         <b>
+          Select Split PDF:
+         </b>
+         Click the
+         <b>
+          Split PDF
+         </b>
+         option to open the splitting workspace.
+        </li>
+        <li>
+         <b>
+          Choose Your File:
+         </b>
+         Upload the PDF document you want to separate.
+        </li>
+        <li>
+         <b>
+          Configure Splitting Options:
+         </b>
+         Use the available page-selection controls to organize your document according to your requirements.
+        </li>
+        <li>
+         <b>
+          Start Processing:
+         </b>
+         Confirm your selections and begin the PDF splitting operation.
+        </li>
+        <li>
+         <b>
+          Combine Selected Pages (Optional):
+         </b>
+         Click
+         <b>
+          Combine &amp; Download PDF
+         </b>
+         to merge the selected pages into one PDF file instead of a ZIP archive.
+        </li>
+        <li>
+         <b>
+          Save the Result:
+         </b>
+         Once processing is complete, use the available download option to save the resulting PDF file or files.
+        </li>
+        <li>
+         <b>
+          Check Your Documents:
+         </b>
+         Open the resulting files to make sure the correct pages have been included.
+        </li>
+       </ul>
+       <p>
+        It is also useful for anyone who simply needs to make a quick adjustment to a PDF without opening a complicated editing application. Whether the task is related to education, office work, business, or personal paperwork, having the necessary tools in one place can save unnecessary steps.
+       </p>
+       <h2>
+        Method 3: How to Join Multiple PDF Files
+       </h2>
+       <p>
+        Use Join PDF when you need to combine separate PDF documents into one continuous file. Every page from every uploaded document appears as an individual thumbnail, allowing you to place pages from different source PDFs in any sequence before creating the final document.
+       </p>
+       <ul class="ul_list">
+        <li>
+         <b>
+          Select Join PDF:
+         </b>
+         Open the Join PDF option beside the Split PDF tab.
+        </li>
+        <li>
+         <b>
+          Upload Multiple Files:
+         </b>
+         Choose or drag two or more PDF documents into the joining workspace.
+        </li>
+        <li>
+         <b>
+          Arrange Individual Pages:
+         </b>
+         Each page from every uploaded PDF appears as its own thumbnail. Drag any page to a new position, or use the square first, up, down, and last controls to place it exactly where you need it.
+        </li>
+        <li>
+         <b>
+          Join and Download:
+         </b>
+         Select
+         <b>
+          Join &amp; Download PDF
+         </b>
+         to create one combined PDF document.
+        </li>
+        <li>
+         <b>
+          Review the Result:
+         </b>
+         Open the downloaded PDF and check that the documents appear in the correct order.
+        </li>
+       </ul>
+       <h2>
+        Helpful Tips for Better PDF Editing Results
+       </h2>
+       <p>
+        A little preparation can make PDF editing easier and help you avoid unnecessary mistakes. Before starting, make sure that you have selected the correct document and that your original file is safely stored.
+       </p>
+       <ul class="ul_list">
+        <li>
+         Keep a backup of important PDF documents before making changes.
+        </li>
+        <li>
+         Use a clear, readable text size when adding new information.
+        </li>
+        <li>
+         Prepare a good-quality signature image for a cleaner appearance.
+        </li>
+        <li>
+         Position text and signature images carefully to avoid covering important content.
+        </li>
+        <li>
+         Double-check your selected pages before splitting a document.
+        </li>
+        <li>
+         Open and review the completed PDF before sharing or submitting it.
+        </li>
+       </ul>
+       <h3>
+        Which PDF Tool Should You Choose?
+       </h3>
+       <p>
+        Each tool serves a different purpose, so select the one that matches what you want to accomplish.
+       </p>
+       <ul class="ul_list">
+        <li>
+         <b>
+          Choose Edit PDF
+         </b>
+         when you want to add text or insert a signature image into an existing PDF.
+        </li>
+        <li>
+         <b>
+          Choose Split PDF
+         </b>
+         when you want to separate a large document into smaller PDF files.
+        </li>
+        <li>
+         <b>
+          Choose Join PDF
+         </b>
+         when you want to combine multiple PDF documents and arrange every individual page in your preferred order.
+        </li>
+       </ul>
+       <blockquote class="note">
+        Practical advice: Always review your PDF before saving the final version. A quick check of the text, signature placement, and selected pages can help prevent mistakes later.
+       </blockquote>
+      </div>
+      <div class="tabC-3">
+       <p>
+        Have questions about editing, splitting or joining PDF documents? You're in the right place! Whether you're using an online PDF editor for the first time or simply looking for a quicker way to manage your documents, we've answered some of the most common questions to help you get started. Explore the FAQs below to learn how the tools work, understand their available features, and find practical solutions to common PDF-related tasks.
+       </p>
+       <div class="showH">
+        <details class="ac">
+         <summary>
+          <h3>
+           Is this Online PDF Editor free to use?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           This online PDF toolkit provides access to PDF editing, splitting, and joining features from one convenient page. You can choose the function you need without installing a separate desktop PDF editor. Any usage restrictions, file-size limits, or additional conditions depend on the current configuration of the tool.
+          </p>
+          <p>
+           Whether you need to make a quick adjustment to a document or organize a lengthy PDF, the aim is to make these everyday tasks more convenient.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           How can I edit a PDF document online?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           Start by selecting the
+           <b>
+            Edit PDF
+           </b>
+           option and uploading the document you want to work with. Once your PDF is loaded, use the available editing controls to add text or insert a signature image.
+          </p>
+          <p>
+           After making the necessary changes, review the document carefully and use the available save or download option to obtain your edited PDF. You do not need advanced editing skills to get started.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           Can I add new text to an existing PDF?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           Yes! The PDF Editor includes a text box feature that allows you to add new text to an existing PDF page. It is useful when you need to insert additional information, notes, labels, or other supplementary content.
+          </p>
+          <p>
+           For example, you might want to add a short explanation to a document or include information that was missing from the original file.
+          </p>
+          <p>
+           Please note that adding a new text box is different from directly editing or replacing the original embedded text in a PDF.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           Can I insert my handwritten signature into a PDF?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           Yes. You can insert a signature image into your PDF document using the signature-image feature. This is helpful when a document needs a visual representation of your handwritten signature.
+          </p>
+          <p>
+           For a more professional appearance, prepare a clear signature image before uploading it. A transparent background can help the signature blend more naturally with the document.
+          </p>
+          <blockquote class="note">
+           Remember that inserting a signature image is not the same as applying a certificate-based digital signature. For legally important documents, check the signing requirements of the receiving organization.
+          </blockquote>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           How do I split a large PDF into smaller files?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           Choose the
+           <b>
+            Split PDF
+           </b>
+           option and upload the document you want to separate. Follow the available page-selection and splitting controls to organize the document according to your needs.
+          </p>
+          <p>
+           For example, you might want to separate individual sections of a study guide, divide a lengthy business report, or organize a collection of pages into smaller documents.
+          </p>
+          <p>
+           After processing, save the resulting files and open them to confirm that the correct pages have been included.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           Can I use the Edit PDF, Split PDF and Join PDF tools separately?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           Absolutely! The page provides three independent functions:
+           <b>
+            Edit PDF
+           </b>
+           ,
+           <b>
+            Split PDF
+           </b>
+           , and
+           <b>
+            Join PDF
+           </b>
+           . You can select the one that matches your requirements.
+          </p>
+          <p>
+           You do not need to edit a PDF before splitting it, or split a document before joining it with another file. Simply open the tool that matches your task and follow its instructions.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           Can I join multiple PDF files into one document?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           Yes. Select
+           <b>
+            Join PDF
+           </b>
+           and choose two or more PDF files. Every page from every file appears as a separate thumbnail with its source filename and original page number. Drag individual pages or use the first, up, down, and last controls to arrange the exact sequence. The tool exports one combined PDF file, not a ZIP archive.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           What file format does this tool support?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           The Edit PDF and Split PDF tools work with PDF documents, while Join PDF accepts two or more PDF files. Select valid PDF documents from your device when using the relevant tool.
+          </p>
+          <p>
+           Other formats, including Word documents, spreadsheets, and image files, should not be assumed to work as direct input files unless additional format support is specifically provided.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           Will editing, splitting, or joining change my original PDFs?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           It is always a good idea to keep untouched copies of your original documents before editing, splitting, or joining PDFs. This gives you a reliable backup if you need to make different changes or start again.
+          </p>
+          <p>
+           Whenever possible, save the completed document separately so that you can keep the original and the updated version. This is particularly important when working with assignments, business reports, contracts, or other important paperwork.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           Can I edit a scanned PDF or add text to a scanned document?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           You can use the available text box feature to add new text over a scanned PDF page. However, scanned documents often contain images of pages rather than selectable text.
+          </p>
+          <p>
+           This means that adding text to a scanned page does not automatically recognize or modify the words already present in the image. If you need to edit existing scanned text, a separate Optical Character Recognition (OCR) tool may be necessary.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           Can I remove or replace existing text in a PDF?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           The available editing functionality focuses on adding new text boxes and inserting signature images. It should not be confused with a full PDF content editor that can directly modify, remove, or replace all existing text and images.
+          </p>
+          <p>
+           If you need to change the original content of a PDF, check whether the document is editable or use a dedicated PDF editing application with the required functionality.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           How do I use the Whiteout tool in this PDF editor?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           Upload a PDF, select Whiteout from the right-side tool rail, and drag across the page to draw a rectangle. Select the rectangle to move or resize it, choose a fill colour, duplicate it, or delete it. The rectangle is included in the exported PDF.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           Can I rotate an individual PDF page?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           Yes. Use the Rotate Left or Rotate Right button to turn the currently active page in 90-degree increments. The page rotation is saved when you export the edited PDF.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           Does the Whiteout tool permanently redact confidential PDF information?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           No. The Whiteout tool places an opaque coloured rectangle over visible page content. It is useful for visual covering, annotations, and preparing a document layout, but it does not guarantee that the original underlying text or image has been removed from the PDF.
+          </p>
+          <p>
+           Do not rely on this visual Whiteout feature to protect passwords, identification numbers, financial details, or other sensitive information. Use a dedicated secure redaction workflow that removes the underlying content and verify the sanitized file before sharing it.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           Is adding a signature image the same as digitally signing a PDF?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           No. These are two different ways of signing a document. A signature image adds a visual representation of your handwritten signature to the PDF page.
+          </p>
+          <p>
+           A certificate-based digital signature uses cryptographic technology to help verify the identity associated with the signature and detect changes to the signed document.
+          </p>
+          <p>
+           For routine documents, a signature image may be suitable when the recipient accepts it. For official agreements, contracts, or business-critical paperwork, confirm which signing method is required before submitting the document.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           Is it safe to upload confidential PDF documents online?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           Document privacy is important, especially when working with personal identification, financial records, confidential business information, or legal paperwork.
+          </p>
+          <p>
+           Before uploading sensitive documents to any online PDF editor, review its privacy policy and understand how uploaded files are processed, stored, and deleted. Avoid submitting highly confidential information unless you are comfortable with the tool's security and privacy practices.
+          </p>
+          <p>
+           For particularly sensitive documents, consider using a trusted offline PDF application instead.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           Do I need to install additional PDF editing software?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           No separate desktop PDF editing application is required to access the tools on this page. You can open the page through a compatible web browser and use the available online interface.
+          </p>
+          <p>
+           Depending on how the tool processes documents, an active internet connection may be necessary. For a smoother experience, use an updated browser and make sure the PDF file is accessible from your device.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           Can I use this PDF tool on a mobile phone?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           You can open the page in a mobile web browser. However, the overall experience may depend on your device, browser compatibility, screen size, and how the PDF workspace is implemented.
+          </p>
+          <p>
+           For documents that require precise text placement or signature positioning, a larger screen may be more comfortable to work with.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           What should I do if my PDF fails to upload or process?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           Sometimes a PDF may not upload or process correctly because of a damaged file, an unsupported document structure, a browser issue, or a temporary connection problem. Before assuming that the tool is not working, try a few simple troubleshooting steps.
+          </p>
+          <ul class="ul_list">
+           <li>
+            Make sure the selected document is a valid PDF file.
+           </li>
+           <li>
+            Check whether the PDF opens correctly on your device.
+           </li>
+           <li>
+            Refresh the page and try uploading the document again.
+           </li>
+           <li>
+            Use an updated version of your web browser.
+           </li>
+           <li>
+            Check your internet connection if online processing is required.
+           </li>
+           <li>
+            Try another PDF to determine whether the problem is related to the original file.
+           </li>
+          </ul>
+          <p>
+           If the problem continues, keep your original document safe and avoid repeatedly processing an important file without checking the results.
+          </p>
+         </div>
+        </details>
+        <details class="ac alt">
+         <summary>
+          <h3>
+           How can I get the best results when editing a PDF?
+          </h3>
+         </summary>
+         <div class="aC">
+          <p>
+           For the best experience, start with a valid, readable PDF and make sure you know exactly what needs to be changed. Use clear text, prepare a good-quality signature image, and check the placement of every added element.
+          </p>
+          <p>
+           Before downloading or sharing the final document, open it again and review the pages carefully. A quick final check can help you catch missing information, misplaced text, or other unexpected changes.
+          </p>
+         </div>
+        </details>
+        <p>
+         Still exploring the best way to manage your PDF documents? We hope these answers have helped you understand the available tools and how to use them effectively. Choose the feature that suits your needs, follow the simple instructions, and always review your document before downloading or sharing it. Whether you're editing a document, splitting a large PDF, or joining multiple files, we're here to make your everyday PDF tasks simpler and more convenient.
+        </p>
+       </div>
+       <h3>
+        Practical Tips for Managing Your PDF Documents
+       </h3>
+       <p>
+        Working with PDF files does not have to be complicated. A little preparation can save time, prevent mistakes, and help you maintain better-organized documents. Whether you are editing an assignment, preparing office paperwork, splitting a lengthy report, or joining several documents, these simple habits can make a difference.
+       </p>
+       <ul class="ul_list">
+        <li>
+         <b>
+          Keep your original files:
+         </b>
+         Save a backup before editing, splitting, or joining important documents.
+        </li>
+        <li>
+         <b>
+          Prepare your signature:
+         </b>
+         Use a clear, high-quality signature image for a cleaner and more professional appearance.
+        </li>
+        <li>
+         <b>
+          Check text placement:
+         </b>
+         Make sure newly added text does not overlap important information.
+        </li>
+        <li>
+         <b>
+          Review selected pages:
+         </b>
+         Double-check your splitting settings before processing a large PDF.
+        </li>
+        <li>
+         <b>
+          Verify the final document:
+         </b>
+         Open the downloaded file to confirm that everything looks correct.
+        </li>
+        <li>
+         <b>
+          Respect document privacy:
+         </b>
+         Be careful when handling confidential, personal, or financial information.
+        </li>
+       </ul>
+       <blockquote class="note">
+        A simple habit worth following: Never replace your only copy of an important document. Keep the original file, make your changes, and check the final version before sharing it with anyone.
+       </blockquote>
+       <h3>
+        Make Your Everyday PDF Tasks Easier
+       </h3>
+       <p>
+        Whether you are a student working on an assignment, a professional preparing office documents, a freelancer handling client paperwork, or simply someone who needs to organize digital files, having convenient PDF tools can make everyday tasks less time-consuming.
+       </p>
+       <p>
+        Instead of switching between different applications for basic document operations, you can access three useful functions from one place. Use
+        <b>
+         Edit PDF
+        </b>
+        to add text or insert a signature image, choose
+        <b>
+         Split PDF
+        </b>
+        to divide a lengthy document, or use
+        <b>
+         Join PDF
+        </b>
+        to combine multiple documents in your preferred order.
+       </p>
+       <p>
+        Ready to get started? Select the function that matches your requirements, upload your PDF document, and follow the on-screen instructions. Once the operation is complete, take a moment to review the resulting file before downloading, printing, or sharing it.
+       </p>
+       <p>
+        We hope this
+        <b>
+         Online PDF Editor, Splitter and Merger
+        </b>
+        makes your document-management tasks a little easier. Bookmark this page so you can quickly return whenever you need a convenient way to edit, split, or join PDF documents.
+       </p>
+      </div>
+     </div>
+     <hr/>
+    </div>
+   </section>
+  </main>
+  <noscript>
+   <p>
+    This PDF toolkit requires JavaScript. Please enable JavaScript in your browser and reload the page.
+   </p>
+  </noscript>
+ </body>
+</html>
+
